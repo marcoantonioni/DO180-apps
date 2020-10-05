@@ -43,6 +43,48 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab manage-review start
 
 ```bash
+sudo mkdir -p /var/local/mysql
+sudo semanage fcontext -a -t container_file_t "/var/local/mysql(/.*)?"
+sudo restorecon -R -v /var/local/mysql
+
+sudo podman pull rhscl/mysql-57-rhel7
+sudo podman inspect rhscl/mysql-57-rhel7 | grep -i user
+
+sudo useradd mysql -u <valore-da-grep>
+sudo chown -R mysql:mysql /var/local/mysql
+
+sudo podman run -d --name mysql-1 -v /var/local/mysql:/var/lib/mysql/data -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=r00tpa55 rhscl/mysql-57-rhel7
+
+cat /home/student/DO180/labs/manage-review/db.sql
+
+sudo podman inspect myqsl-1 | grep -i ipaddress
+
+mysql -uuser1 -pmypa55 -h 10.88.100.114 items
+
+CREATE TABLE Projects (id int(11) NOT NULL, name varchar(255) DEFAULT NULL, code varchar(255) DEFAULT NULL, PRIMARY KEY (id));
+INSERT into Projects (id, name, code) values (1,'DevOps','DO180');
+exit
+
+sudo podman exec mysql-1 /bin/bash -c 'mysql -uuser1 -pmypa55 items -e "select * from Projects;"'
+
+sudo podman stop mysql-1
+
+sudo podman run -d --name mysql-2 -p 13306:3306 -v /var/local/mysql:/var/lib/mysql/data -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=r00tpa55 rhscl/mysql-57-rhel7
+
+sudo podman ps -all
+sudo podman ps -all > /tmp/my-containers
+
+sudo podman exec -it mysql-2 /bin/bash
+mysql -uuser1 -pmypa55 items
+select * from Projects;
+exit
+exit
+
+mysql -uuser1 -pmypa55 -h localhost:13306 items
+
+INSERT into Item (id, description, done) values (3,'Finished lab',1);
+
+exit
 ```
 
 
