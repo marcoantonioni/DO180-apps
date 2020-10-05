@@ -214,6 +214,38 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab multicontainer-review start
 
 ```bash
+cd ~/DO180/labs/multicontainer-review
+
+cd ./images/mysql
+./build.sh
+cd ../..
+cd ./images/quote-php
+./build.sh
+
+sudo podman images | grep do180
+
+sudo podman login -u ${RHT_OCP4_QUAY_USER} quay.io 
+
+sudo podman tag do180/mysql-57-rhel7 quay.io/marco_antonioni/mysql
+sudo podman push quay.io/marco_antonioni/mysql-57-rhel7 
+
+sudo podman tag do180/quote-php quay.io/marco_antonioni/quote-php 
+sudo podman push quay.io/marco_antonioni/quote-php
+
+# rendere public le due immagini su sito web https://quay.io/repository/
+
+cd /home/student/DO180/labs/multicontainer-review/
+cat quote-php-template.json
+
+oc new-project ${RHT_OCP4_DEV_USER}-deploy
+
+oc process --parameters -f quote-php-template.json
+oc process -p=RHT_OCP4_QUAY_USER=${RHT_OCP4_QUAY_USER} -f quote-php-template.json | oc create -f -
+
+oc expose service quote-php
+oc get route
+
+curl http://quote-php-${RHT_OCP4_DEV_USER}-deploy.${RHT_OCP4_WILDCARD_DOMAIN}
 ```
 
 
