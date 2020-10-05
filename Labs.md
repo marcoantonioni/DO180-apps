@@ -12,6 +12,7 @@ You should be able to start and customize a container using a container image.
 
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
+
 [student@workstation ~]$ lab container-review start
 
 ```bash
@@ -38,6 +39,7 @@ directory on the host to store the MySQL data.
 
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
+
 [student@workstation ~]$ lab manage-review start
 
 ```bash
@@ -54,6 +56,7 @@ You should be able to create a custom container image and manage container image
 
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
+
 [student@workstation ~]$ lab image-review start
 
 ```bash
@@ -72,6 +75,7 @@ files.
 
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
+
 [student@workstation ~]$ lab dockerfile-review start
 
 ```bash
@@ -88,6 +92,7 @@ You should be able to create an OpenShift application and access it through a we
 
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
+
 [student@workstation ~]$ lab openshift-review start
 
 ```bash
@@ -106,6 +111,7 @@ access it through a web browser.
 
 Before You Begin
 Open a terminal on workstation as the student user and run the following commands:
+
 [student@workstation ~]$ lab multicontainer-review start
 
 ```bash
@@ -125,6 +131,7 @@ deployment process of a Node.js application.
 Before You Begin
 A running OpenShift cluster.
 Open a terminal on workstation as the student user and run the following command:
+
 [student@workstation ~]$ lab troubleshoot-review start
 
 ```bash
