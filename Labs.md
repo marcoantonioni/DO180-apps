@@ -151,6 +151,23 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab dockerfile-review start
 
 ```bash
+vi /home/student/DO180/labs/dockerfile-review/Dockerfile
+
+FROM ubi7/ubi:7.7
+MAINTAINER marco marco@home.net
+ENV PORT 8080
+RUN yum -y install httpd && yum -y clean all
+EXPOSE $PORT
+COPY ./src/* /var/www/html/
+CMD ["httpd","-D","FOREGROUND"]
+
+
+cd /home/student/DO180/labs/dockerfile-review/
+sudo podman build -t do180/custom-apache .
+
+sudo podman run -d -p 20080:8080 --name dockerfile do180/custom-apache
+curl localhost:20080
+
 ```
 
 
