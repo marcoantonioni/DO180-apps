@@ -100,6 +100,38 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab image-review start
 
 ```bash
+sudo podman search docker.io/nginx
+
+sudo podman pull docker.io/library/nginx
+sudo podman images
+
+sudo podman run -d -p 8080:80 --name official-nginx nginx 
+sudo podman exec -it official-nginx /bin/bash
+echo "DO180" > /usr/share/nginx/html/index.html
+exit
+
+curl localhost:8080
+
+sudo podman stop official-nginx
+sudo podman commit official-nginx do180/mynginx:v1.0-SNAPSHOT
+
+
+sudo podman run -d -p 8080:80 --name official-nginx-dev do180/mynginx:v1.0-SNAPSHOT 
+sudo podman exec -it official-nginx-dev /bin/bash
+echo "DO180 Page" > /usr/share/nginx/html/index.html
+exit
+
+curl localhost:8080
+
+
+sudo podman stop official-nginx-dev
+sudo podman commit official-nginx-dev do180/mynginx:v1.0
+
+sudo podman rmi -f do180/mynginx:v1.0-SNAPSHOT
+
+sudo podman run -d -p 8280:80 --name my-nginx do180/mynginx:v1.0
+
+curl localhost:8280
 ```
 
 ## Lab: Creating Custom Container Images
