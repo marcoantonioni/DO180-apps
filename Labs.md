@@ -1,4 +1,4 @@
-# Elenco dei Labs e requisiti
+# Elenco dei Labs
 
 Dettagli dei singoli labs in: do180-4.2-student-guide.pdf
 
@@ -32,7 +32,7 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab manage-review start
 
 
-## Managing Images
+## Lab: Managing Images
 
 Performance Checklist
 In this lab, you will create and manage container images.
@@ -44,7 +44,7 @@ Before You Begin
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab image-review start
 
-## Creating Custom Container Images
+## Lab: Creating Custom Container Images
 
 Performance Checklist
 In this lab, you will create a Dockerfile to build a custom Apache Web Server container image.
@@ -60,7 +60,7 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab dockerfile-review start
 
 
-## Deploying Containerized Applications on OpenShift
+## Lab: Deploying Containerized Applications on OpenShift
 
 Performance Checklist
 In this lab, you will create an application using the OpenShift Source-to-Image facility.
@@ -73,7 +73,7 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab openshift-review start
 
 
-## Deploying Multi-Container Applications
+## Lab: Deploying Multi-Container Applications
 
 Performance Checklist
 In this lab, you will deploy a PHP Application with a MySQL database using an OpenShift
@@ -88,7 +88,7 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab multicontainer-review start
 
 
-## Troubleshooting Containerized Applications
+## Lab: Troubleshooting Containerized Applications
 
 Performance Checklist
 In this lab, you will troubleshoot the OpenShift build and deployment process for a Node.js
