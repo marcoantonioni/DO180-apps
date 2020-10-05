@@ -14,6 +14,15 @@ Before You Begin
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab container-review start
 
+```bash
+sudo podman run -d -p 8080:80 --name httpd-basic redhattraining/httpd-parent:2.4
+sudo podman ps
+curl http://localhost:8080
+sudo podman exec -it httpd-basic /bin/bash
+echo "Modified" >> /var/www/html/index.html
+exit
+curl http://localhost:8080
+```
 
 ## Lab: Managing Containers
 
@@ -31,6 +40,9 @@ Before You Begin
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab manage-review start
 
+```bash
+```
+
 
 ## Lab: Managing Images
 
@@ -43,6 +55,9 @@ You should be able to create a custom container image and manage container image
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab image-review start
+
+```bash
+```
 
 ## Lab: Creating Custom Container Images
 
@@ -59,6 +74,9 @@ Before You Begin
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab dockerfile-review start
 
+```bash
+```
+
 
 ## Lab: Deploying Containerized Applications on OpenShift
 
@@ -71,6 +89,9 @@ You should be able to create an OpenShift application and access it through a we
 Before You Begin
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab openshift-review start
+
+```bash
+```
 
 
 ## Lab: Deploying Multi-Container Applications
@@ -87,6 +108,9 @@ Before You Begin
 Open a terminal on workstation as the student user and run the following commands:
 [student@workstation ~]$ lab multicontainer-review start
 
+```bash
+```
+
 
 ## Lab: Troubleshooting Containerized Applications
 
@@ -102,4 +126,7 @@ Before You Begin
 A running OpenShift cluster.
 Open a terminal on workstation as the student user and run the following command:
 [student@workstation ~]$ lab troubleshoot-review start
+
+```bash
+```
 
