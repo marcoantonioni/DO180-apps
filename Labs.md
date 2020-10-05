@@ -185,6 +185,16 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab openshift-review start
 
 ```bash
+source /usr/local/etc/ocp4.config
+oc login ...
+
+oc new-project ${RHT_OCP4_DEV_USER}-ocp
+
+oc new-app --name=temps --context-dir=temps -i php:7.1 https://github.com/RedHatTraining/DO180-apps
+
+oc expose service temps
+
+curl http://temps-${RHT_OCP4_DEV_USER}-ocp.${RHT_OCP4_WILDCARD_DOMAIN}
 ```
 
 
