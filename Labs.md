@@ -266,5 +266,57 @@ Open a terminal on workstation as the student user and run the following command
 [student@workstation ~]$ lab troubleshoot-review start
 
 ```bash
+
+cd ~/DO180-apps
+git checkout master
+git checkout -b troubleshoot-review
+git push -u origin troubleshoot-review
+
+oc new-project ${RHT_OCP4_DEV_USER}-nodejs-app
+
+oc new-app --name nodejs-dev --context-dir=nodejs-app --as-deployment-config=true https://github.com/marcoantonioni/DO180-apps
+
+# errore versione server express
+# aggiornare package.json
+# push su branch
+# edit bc e aggiunta campo in spec.source.git --> ref: <nome-branch>
+
+oc start-build nodejs-dev
+oc logs -f <pod-build>
+
+# errore modulo js
+
+oc scale dc nodejs-dev --replicas=0
+
+# aggiornare server.js
+# push su branch
+
+oc start-build nodejs-dev
+oc logs -f <pod-build>
+
+oc scale dc nodejs-dev --replicas=1
+
+oc logs -f <pod-applicazione>
+
+oc expose service nodejs-dev
+oc get route nodejs-dev
+
+curl http://nodejs-dev-${RHT_OCP4_DEV_USER}-nodejs-app.${RHT_OCP4_WILDCARD_DOMAIN}
+
+# errore process.env
+
+oc scale dc nodejs-dev --replicas=0
+
+# aggiornare server.js
+# push su branch
+
+oc start-build nodejs-dev
+oc logs -f <pod-build>
+
+oc scale dc nodejs-dev --replicas=1
+
+oc logs -f <pod-applicazione>
+
+curl http://nodejs-dev-${RHT_OCP4_DEV_USER}-nodejs-app.${RHT_OCP4_WILDCARD_DOMAIN}
 ```
 
