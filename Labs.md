@@ -59,11 +59,14 @@ cat /home/student/DO180/labs/manage-review/db.sql
 
 sudo podman inspect myqsl-1 | grep -i ipaddress
 
-mysql -uuser1 -pmypa55 -h 10.88.100.114 items
+mysql -uuser1 -h 10.88.100.114 > -pmypa55 items < /home/student/DO180/labs/manage-review/db.sql
 
-CREATE TABLE Projects (id int(11) NOT NULL, name varchar(255) DEFAULT NULL, code varchar(255) DEFAULT NULL, PRIMARY KEY (id));
-INSERT into Projects (id, name, code) values (1,'DevOps','DO180');
-exit
+# oppure
+  mysql -uuser1 -pmypa55 -h 10.88.100.114 items
+
+  CREATE TABLE Projects (id int(11) NOT NULL, name varchar(255) DEFAULT NULL, code varchar(255) DEFAULT NULL, PRIMARY KEY (id));
+  INSERT into Projects (id, name, code) values (1,'DevOps','DO180');
+  exit
 
 sudo podman exec mysql-1 /bin/bash -c 'mysql -uuser1 -pmypa55 items -e "select * from Projects;"'
 
@@ -74,17 +77,12 @@ sudo podman run -d --name mysql-2 -p 13306:3306 -v /var/local/mysql:/var/lib/mys
 sudo podman ps -all
 sudo podman ps -all > /tmp/my-containers
 
-sudo podman exec -it mysql-2 /bin/bash
-mysql -uuser1 -pmypa55 items
-select * from Projects;
-exit
+mysql -uuser1 -h workstation.lab.example.com -pmypa55 -P13306 items
+
+insert into Item (description, done) values ('Finished lab', 1);
 exit
 
-mysql -uuser1 -pmypa55 -h localhost:13306 items
-
-INSERT into Item (id, description, done) values (3,'Finished lab',1);
-
-exit
+sudo podman rm -f mysql-2
 ```
 
 
