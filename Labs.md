@@ -19,7 +19,7 @@ sudo podman run -d -p 8080:80 --name httpd-basic redhattraining/httpd-parent:2.4
 sudo podman ps
 curl http://localhost:8080
 sudo podman exec -it httpd-basic /bin/bash
-echo "Modified" >> /var/www/html/index.html
+echo "Hello World" > /var/www/html/index.html
 exit
 curl http://localhost:8080
 ```
